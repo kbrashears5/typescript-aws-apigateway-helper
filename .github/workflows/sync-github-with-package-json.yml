@@ -19,4 +19,4 @@ jobs:
       uses: jaid/action-sync-node-meta@v1.4.0
       with:
         direction: overwrite-github
-        githubToken: ${{ secrets.GITHUB_ACTIONS_TOKEN }}
+        githubToken: ${{ secrets.ACTIONS }}
