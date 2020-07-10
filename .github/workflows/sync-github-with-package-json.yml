@@ -1,9 +1,6 @@
 name: sync-github-with-package-json
 
-# every Thursday @ 12:00 AM UTC
 on:
- schedule:
-  - cron: 0 0 * * 4 
  push:
   branches: [master]
 
