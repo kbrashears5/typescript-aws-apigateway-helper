@@ -6,3 +6,5 @@ updates:
     # daily at 5am UTC
     schedule:
       interval: "daily"
+    # always get latest version
+    versioning-strategy: increase
