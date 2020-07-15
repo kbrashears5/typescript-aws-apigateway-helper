@@ -22,7 +22,7 @@
     "main": "lib/index.js",
     "license": "MIT",
     "dependencies": {
-        "typescript-helper-functions": "~1.0.9",
+        "typescript-helper-functions": "~1.0.10",
         "typescript-ilogger": "~1.0.3"
     },
     "devDependencies": {
