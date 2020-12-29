@@ -24,7 +24,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         options?: APIGateway.APIGatewayClientConfig) {
 
         super(logger);
-        options = this.ObjectOperations.IsNullOrEmpty(options) ? { region: "us-east-1" } as APIGateway.APIGatewayClientConfig : options!;
+        options = this.ObjectOperations.IsNullOrEmpty(options) ? { region: 'us-east-1' } as APIGateway.APIGatewayClientConfig : options!;
         this.Repository = repository || new APIGateway.APIGateway(options);
     }
 
