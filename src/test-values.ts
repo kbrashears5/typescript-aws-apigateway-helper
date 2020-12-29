@@ -1,3 +1,5 @@
+import * as APIGateway from '@aws-sdk/client-api-gateway';
+
 /**
  * Test values
  */
@@ -22,5 +24,5 @@ export class TestingValues {
     public UsagePlanId: string = 'usage-plan-id';
 
     // objects
-    public ApiStageArray: AWS.APIGateway.ApiStage[] = [{ apiId: this.StringValue }];
+    public ApiStageArray: APIGateway.ApiStage[] = [{ apiId: this.StringValue }];
 }

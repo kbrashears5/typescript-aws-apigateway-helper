@@ -1,4 +1,4 @@
-import * as AWS from 'aws-sdk';
+import * as APIGateway from '@aws-sdk/client-api-gateway';
 
 /**
  * APIGateway Helper
@@ -8,7 +8,7 @@ export interface IAPIGatewayHelper {
     /**
      * AWS Repository for APIGateway
      */
-    Repository: AWS.APIGateway;
+    Repository: APIGateway.APIGateway;
 
     /**
      * Create an API key
@@ -18,21 +18,21 @@ export interface IAPIGatewayHelper {
      */
     CreateApiKeyAsync(name: string,
         description: string,
-        value?: string): Promise<AWS.APIGateway.ApiKey>;
+        value?: string): Promise<APIGateway.ApiKey>;
 
     /**
      * Create an usage plan
      * @param name {string} Usage plan name
      * @param description {string} Usage plan description
-     * @param apiStages {AWS.APIGateway.ApiStage[]} API stages to attach this usage plan to
-     * @param quota {AWS.APIGateway.QuotaSettings} Quota settings
-     * @param throttle {AWS.APIGateway.ThrottleSettings} Throttle settings
+     * @param apiStages {APIGateway.ApiStage[]} API stages to attach this usage plan to
+     * @param quota {APIGateway.QuotaSettings} Quota settings
+     * @param throttle {APIGateway.ThrottleSettings} Throttle settings
      */
     CreateUsagePlanAsync(name: string,
         description: string,
-        apiStages: AWS.APIGateway.ApiStage[],
-        quota?: AWS.APIGateway.QuotaSettings,
-        throttle?: AWS.APIGateway.ThrottleSettings): Promise<AWS.APIGateway.UsagePlan>;
+        apiStages: APIGateway.ApiStage[],
+        quota?: APIGateway.QuotaSettings,
+        throttle?: APIGateway.ThrottleSettings): Promise<APIGateway.UsagePlan>;
 
     /**
      * Create an usage plan key
@@ -42,7 +42,7 @@ export interface IAPIGatewayHelper {
      */
     CreateUsagePlanKeyAsync(keyId: string,
         keyType: string,
-        usagePlanId: string): Promise<AWS.APIGateway.UsagePlanKey>;
+        usagePlanId: string): Promise<APIGateway.UsagePlanKey>;
 
     /**
      * Delete an API key
@@ -68,5 +68,5 @@ export interface IAPIGatewayHelper {
      * Get an API key
      * @param apiKey {string} API Key
      */
-    GetApiKeyAsync(apiKey: string): Promise<AWS.APIGateway.ApiKey>;
+    GetApiKeyAsync(apiKey: string): Promise<APIGateway.ApiKey>;
 }
