@@ -5,11 +5,9 @@ import { APIGatewayHelper } from './helper';
 
 const logger = new Logger(LogLevel.Off);
 const mockerResolves = new APIGatewayMock(false);
-const apiGatewayHelperMockResolves = new APIGatewayHelper(logger,
-    mockerResolves.Mock);
+const apiGatewayHelperMockResolves = new APIGatewayHelper(logger, mockerResolves.Mock);
 const mockerRejects = new APIGatewayMock(true);
-const apiGatewayHelperMockRejects = new APIGatewayHelper(logger,
-    mockerRejects.Mock);
+const apiGatewayHelperMockRejects = new APIGatewayHelper(logger, mockerRejects.Mock);
 const TestValues = new TestingValues();
 
 /**
