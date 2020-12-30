@@ -4,12 +4,6 @@ import * as APIGateway from '@aws-sdk/client-api-gateway';
  * APIGateway Helper
  */
 export interface IAPIGatewayHelper {
-
-    /**
-     * AWS Repository for APIGateway
-     */
-    Repository: APIGateway.APIGateway;
-
     /**
      * Create an API key
      * @param name {string} Name of new API key

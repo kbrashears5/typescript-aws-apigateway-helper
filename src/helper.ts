@@ -11,7 +11,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
     /**
      * AWS Repository for APIGateway
      */
-    public Repository: APIGateway.APIGateway;
+    private Repository: APIGateway.APIGateway;
 
     /**
      * Initializes new instance of APIGatewayHelper
