@@ -1,4 +1,4 @@
-import * as AWS from 'aws-sdk';
+import * as APIGateway from '@aws-sdk/client-api-gateway';
 import { ILogger } from 'typescript-ilogger';
 import { BaseClass } from 'typescript-helper-functions';
 import { IAPIGatewayHelper } from './interface';
@@ -11,20 +11,21 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
     /**
      * AWS Repository for APIGateway
      */
-    public Repository: AWS.APIGateway;
+    private Repository: APIGateway.APIGateway;
 
     /**
      * Initializes new instance of APIGatewayHelper
      * @param logger {ILogger} Injected logger
-     * @param repository {AWS.APIGateway} Injected Repository. A new repository will be created if not supplied
-     * @param options {AWS.APIGateway.ClientConfiguration} Injected configuration if a Repository is supplied
+     * @param repository {APIGateway.APIGateway} Injected Repository. A new repository will be created if not supplied
+     * @param options {APIGateway.APIGatewayClientConfig} Injected configuration if a Repository is supplied
      */
     constructor(logger: ILogger,
-        repository?: AWS.APIGateway,
-        options?: AWS.APIGateway.ClientConfiguration) {
+        repository?: APIGateway.APIGateway,
+        options?: APIGateway.APIGatewayClientConfig) {
 
         super(logger);
-        this.Repository = repository || new AWS.APIGateway(options);
+        options = this.ObjectOperations.IsNullOrEmpty(options) ? { region: 'us-east-1' } as APIGateway.APIGatewayClientConfig : options!;
+        this.Repository = repository || new APIGateway.APIGateway(options);
     }
 
     /**
@@ -35,7 +36,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
      */
     public async CreateApiKeyAsync(name: string,
         description: string,
-        value?: string): Promise<AWS.APIGateway.ApiKey> {
+        value?: string): Promise<APIGateway.ApiKey> {
 
         const action = `${APIGatewayHelper.name}.${this.CreateApiKeyAsync.name}`;
         this.LogHelper.LogInputs(action, { name, description, value });
@@ -45,7 +46,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(description)) { throw new Error(`[${action}]-Must supply description`); }
 
         // create params object
-        const params: AWS.APIGateway.CreateApiKeyRequest = {
+        const params: APIGateway.CreateApiKeyRequest = {
             description,
             name,
         };
@@ -53,7 +54,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.createApiKey(params).promise();
+        const response = await this.Repository.createApiKey(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -63,15 +64,15 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
      * Create an usage plan
      * @param name {string} Usage plan name
      * @param description {string} Usage plan description
-     * @param apiStages {AWS.APIGateway.ApiStage[]} API stages to attach this usage plan to
-     * @param quota {AWS.APIGateway.QuotaSettings} Quota settings
-     * @param throttle {AWS.APIGateway.ThrottleSettings} Throttle settings
+     * @param apiStages {APIGateway.ApiStage[]} API stages to attach this usage plan to
+     * @param quota {APIGateway.QuotaSettings} Quota settings
+     * @param throttle {APIGateway.ThrottleSettings} Throttle settings
      */
     public async CreateUsagePlanAsync(name: string,
         description: string,
-        apiStages: AWS.APIGateway.ApiStage[],
-        quota?: AWS.APIGateway.QuotaSettings,
-        throttle?: AWS.APIGateway.ThrottleSettings): Promise<AWS.APIGateway.UsagePlan> {
+        apiStages: APIGateway.ApiStage[],
+        quota?: APIGateway.QuotaSettings,
+        throttle?: APIGateway.ThrottleSettings): Promise<APIGateway.UsagePlan> {
 
         const action = `${APIGatewayHelper.name}.${this.CreateUsagePlanAsync.name}`;
         this.LogHelper.LogInputs(action, { name, description, apiStages, quota, throttle });
@@ -82,7 +83,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         if (!apiStages || apiStages.length === 0) { throw new Error(`[${action}]-Must supply at least one apiStage`); }
 
         // create params object
-        const params: AWS.APIGateway.CreateUsagePlanRequest = {
+        const params: APIGateway.CreateUsagePlanRequest = {
             apiStages,
             description,
             name,
@@ -92,7 +93,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.createUsagePlan(params).promise();
+        const response = await this.Repository.createUsagePlan(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -106,7 +107,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
      */
     public async CreateUsagePlanKeyAsync(keyId: string,
         keyType: string,
-        usagePlanId: string): Promise<AWS.APIGateway.UsagePlanKey> {
+        usagePlanId: string): Promise<APIGateway.UsagePlanKey> {
 
         const action = `${APIGatewayHelper.name}.${this.CreateUsagePlanKeyAsync.name}`;
         this.LogHelper.LogInputs(action, { keyId, keyType, usagePlanId });
@@ -117,7 +118,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(usagePlanId)) { throw new Error(`[${action}]-Must supply usagePlanId`); }
 
         // create params object
-        const params: AWS.APIGateway.CreateUsagePlanKeyRequest = {
+        const params: APIGateway.CreateUsagePlanKeyRequest = {
             keyId,
             keyType,
             usagePlanId,
@@ -125,7 +126,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.createUsagePlanKey(params).promise();
+        const response = await this.Repository.createUsagePlanKey(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -144,13 +145,13 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(apiKey)) { throw new Error(`[${action}]-Must supply apiKey`); }
 
         // create params object
-        const params: AWS.APIGateway.DeleteApiKeyRequest = {
+        const params: APIGateway.DeleteApiKeyRequest = {
             apiKey,
         };
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.deleteApiKey(params).promise();
+        const response = await this.Repository.deleteApiKey(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -169,13 +170,13 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(usagePlanId)) { throw new Error(`[${action}]-Must supply usagePlanId`); }
 
         // create params object
-        const params: AWS.APIGateway.DeleteUsagePlanRequest = {
+        const params: APIGateway.DeleteUsagePlanRequest = {
             usagePlanId,
         };
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.deleteUsagePlan(params).promise();
+        const response = await this.Repository.deleteUsagePlan(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -197,14 +198,14 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(usagePlanId)) { throw new Error(`[${action}]-Must supply usagePlanId`); }
 
         // create params object
-        const params: AWS.APIGateway.DeleteUsagePlanKeyRequest = {
+        const params: APIGateway.DeleteUsagePlanKeyRequest = {
             keyId,
             usagePlanId,
         };
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.deleteUsagePlanKey(params).promise();
+        const response = await this.Repository.deleteUsagePlanKey(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
@@ -214,7 +215,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
      * Get an API key
      * @param apiKey {string} API Key
      */
-    public async GetApiKeyAsync(apiKey: string): Promise<AWS.APIGateway.ApiKey> {
+    public async GetApiKeyAsync(apiKey: string): Promise<APIGateway.ApiKey> {
 
         const action = `${APIGatewayHelper.name}.${this.GetApiKeyAsync.name}`;
         this.LogHelper.LogInputs(action, { apiKey });
@@ -223,13 +224,13 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
         if (this.ObjectOperations.IsNullOrWhitespace(apiKey)) { throw new Error(`[${action}]-Must supply apiKey`); }
 
         // create params object
-        const params: AWS.APIGateway.GetApiKeyRequest = {
+        const params: APIGateway.GetApiKeyRequest = {
             apiKey,
         };
         this.LogHelper.LogRequest(action, params);
 
         // make AWS call
-        const response = await this.Repository.getApiKey(params).promise();
+        const response = await this.Repository.getApiKey(params);
         this.LogHelper.LogResponse(action, response);
 
         return response;
