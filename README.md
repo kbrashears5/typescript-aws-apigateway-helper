@@ -10,44 +10,53 @@
 
 [![NPM Version](https://img.shields.io/npm/v/typescript-aws-apigateway-helper)](https://img.shields.io/npm/v/typescript-aws-apigateway-helper)
 [![Downloads](https://img.shields.io/npm/dt/typescript-aws-apigateway-helper)](https://img.shields.io/npm/dt/typescript-aws-apigateway-helper)
+
 </div>
 
 ## Install
+
 ```
 npm install typescript-aws-apigateway-helper@latest
 ```
 
 ## Usage
+
 ### Default - running in Lambda in your own account
+
 ```typescript
 const logger = new Logger(LogLevel.Trace);
 
 const helper = new APIGatewayHelper(logger);
 
-const response = await helper.CreateApiKeyAsync('apiKey',
-    'description',
-    'value');
+const response = await helper.CreateApiKeyAsync(
+  'apiKey',
+  'description',
+  'value',
+);
 ```
 
 ### Running in separate account or not in Lambda
+
 ```typescript
 const logger = new Logger(LogLevel.Trace);
 
 const options: AWS.APIGateway.ClientConfiguration = {
-    accessKeyId: '{access_key}',
-    secretAccessKey: '{secret_key}',
-    region: 'us-east-1',
+  accessKeyId: '{access_key}',
+  secretAccessKey: '{secret_key}',
+  region: 'us-east-1',
 };
 
 const repository = new AWS.APIGateway(options);
 
-const helper = new APIGatewayHelper(logger,
-    repository);
+const helper = new APIGatewayHelper(logger, repository);
 
-const response = await helper.CreateApiKeyAsync('apiKey',
-    'description',
-    'value');
+const response = await helper.CreateApiKeyAsync(
+  'apiKey',
+  'description',
+  'value',
+);
 ```
 
 ## Notes
+
 If no options are supplied, will default to `us-east-1` as the region
