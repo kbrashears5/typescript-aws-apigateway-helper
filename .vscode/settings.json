@@ -1,9 +1,10 @@
 {
-    "cSpell.words": [
-        "IAPI",
-        "cobertura",
-        "ilogger",
-        "postpublish",
-        "prebuild"
-    ]
+  "cSpell.words": [
+    "IAPI",
+    "Parens",
+    "cobertura",
+    "ilogger",
+    "postpublish",
+    "prebuild"
+  ]
 }
