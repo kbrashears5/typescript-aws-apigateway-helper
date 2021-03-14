@@ -38,15 +38,17 @@ const response = await helper.CreateApiKeyAsync(
 ### Running in separate account or not in Lambda
 
 ```typescript
+import * as APIGateway from '@aws-sdk/client-api-gateway';
+
 const logger = new Logger(LogLevel.Trace);
 
-const options: AWS.APIGateway.ClientConfiguration = {
+const options: APIGateway.APIGatewayClientConfig = {
   accessKeyId: '{access_key}',
   secretAccessKey: '{secret_key}',
   region: 'us-east-1',
 };
 
-const repository = new AWS.APIGateway(options);
+const repository = new APIGateway.APIGateway(options);
 
 const helper = new APIGatewayHelper(logger, repository);
 
