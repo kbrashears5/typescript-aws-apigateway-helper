@@ -1,6 +1,6 @@
 {
   "name": "typescript-aws-apigateway-helper",
-  "version": "2.0.40",
+  "version": "2.0.41",
   "description": "Typescript AWS API Gateway Helper",
   "repository": {
     "type": "git",
@@ -23,8 +23,8 @@
   "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-api-gateway": "~3.17.0",
-    "typescript-helper-functions": "~1.0.150",
-    "typescript-ilogger": "~1.0.104"
+    "typescript-helper-functions": "~1.0.151",
+    "typescript-ilogger": "~1.0.106"
   },
   "devDependencies": {
     "@types/aws-lambda": "~8.10.76",
@@ -68,8 +68,8 @@
     "clean": "rimraf ./lib",
     "format": "prettier --write .",
     "lint": "eslint -c .eslintrc.yml \"*/**\"",
-    "postinstall": "node-git-hooks",
     "prebuild": "npm run clean && npm run format && npm run lint",
+    "prep": "npm run update && node-git-hooks",
     "test": "jest --ci --coverage",
     "update:aws-sdk": "npm i @aws-sdk/client-api-gateway@latest",
     "update:eslint-config-prettier": "npm i eslint-config-prettier@latest --save-dev",
@@ -93,6 +93,6 @@
     "update:typescript-helper-functions": "npm i typescript-helper-functions@latest",
     "update:typescript-ilogger": "npm i typescript-ilogger@latest",
     "update:typescript": "npm i typescript@latest --save-dev",
-    "update": "run-s update:* && npm run postinstall"
+    "update": "run-s update:*"
   }
 }

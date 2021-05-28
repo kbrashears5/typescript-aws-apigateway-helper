@@ -4,9 +4,7 @@
     
 <b>Typescript helper functions for AWS API Gateway</b>
     
-[![Build Status](https://dev.azure.com/kbrashears5/github/_apis/build/status/kbrashears5.typescript-aws-apigateway-helper?branchName=master)](https://dev.azure.com/kbrashears5/github/_build/latest?definitionId=20&branchName=master)
-[![Tests](https://img.shields.io/azure-devops/tests/kbrashears5/github/20)](https://img.shields.io/azure-devops/tests/kbrashears5/github/20)
-[![Code Coverage](https://img.shields.io/azure-devops/coverage/kbrashears5/github/20)](https://img.shields.io/azure-devops/coverage/kbrashears5/github/20)
+[![CI/CD](https://github.com/kbrashears5/typescript-aws-api-gateway-helper/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/kbrashears5/typescript-aws-api-gateway-helper/actions/workflows/ci-cd.yml)
 
 [![NPM Version](https://img.shields.io/npm/v/typescript-aws-apigateway-helper)](https://img.shields.io/npm/v/typescript-aws-apigateway-helper)
 [![Downloads](https://img.shields.io/npm/dt/typescript-aws-apigateway-helper)](https://img.shields.io/npm/dt/typescript-aws-apigateway-helper)
@@ -62,3 +60,13 @@ const response = await helper.CreateApiKeyAsync(
 ## Notes
 
 If no options are supplied, will default to `us-east-1` as the region
+
+## Development
+
+Clone the latest and run
+
+```npm
+npm run prep
+```
+
+to install packages and prep the git hooks

@@ -1,11 +1,14 @@
 {
   "cSpell.words": [
+    "Autobuild",
     "IAPI",
     "Parens",
     "cobertura",
+    "codeql",
     "eqeqeq",
     "ilogger",
     "martinbeentjes",
+    "paren",
     "postpublish",
     "prebuild"
   ]
