@@ -24,9 +24,11 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
     options?: APIGateway.APIGatewayClientConfig,
   ) {
     super(logger);
+    // eslint-disable-next-line no-param-reassign
     options = this.ObjectOperations.IsNullOrEmpty(options)
       ? ({ region: 'us-east-1' } as APIGateway.APIGatewayClientConfig)
-      : options!;
+      : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        options!;
     this.Repository = repository || new APIGateway.APIGateway(options);
   }
 
@@ -167,7 +169,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
    * Delete an API key
    * @param apiKey {string} API key to delete
    */
-  public async DeleteApiKeyAsync(apiKey: string): Promise<object> {
+  public async DeleteApiKeyAsync(apiKey: string): Promise<any> {
     const action = `${APIGatewayHelper.name}.${this.DeleteApiKeyAsync.name}`;
     this.LogHelper.LogInputs(action, { apiKey });
 
@@ -193,7 +195,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
    * Delete an usage plan
    * @param usagePlanId {string} Usage plan to delete
    */
-  public async DeleteUsagePlanAsync(usagePlanId: string): Promise<object> {
+  public async DeleteUsagePlanAsync(usagePlanId: string): Promise<any> {
     const action = `${APIGatewayHelper.name}.${this.DeleteUsagePlanAsync.name}`;
     this.LogHelper.LogInputs(action, { usagePlanId });
 
@@ -223,7 +225,7 @@ export class APIGatewayHelper extends BaseClass implements IAPIGatewayHelper {
   public async DeleteUsagePlanKeyAsync(
     keyId: string,
     usagePlanId: string,
-  ): Promise<object> {
+  ): Promise<any> {
     const action = `${APIGatewayHelper.name}.${this.DeleteUsagePlanKeyAsync.name}`;
     this.LogHelper.LogInputs(action, { keyId, usagePlanId });
 

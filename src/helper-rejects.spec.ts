@@ -51,7 +51,7 @@ const TestValues = new TestingValues();
  * Test the CreateApiKeyAsync method
  */
 describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateApiKeyAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = apiGatewayHelperMock.CreateApiKeyAsync(
       TestValues.Name,
       TestValues.Description,
@@ -65,7 +65,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateApiKeyAsync.name
  * Test the CreateUsagePlanAsync method
  */
 describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateUsagePlanAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = apiGatewayHelperMock.CreateUsagePlanAsync(
       TestValues.Name,
       TestValues.Description,
@@ -79,7 +79,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateUsagePlanAsync.n
  * Test the CreateUsagePlanKeyAsync method
  */
 describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateUsagePlanKeyAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = apiGatewayHelperMock.CreateUsagePlanKeyAsync(
       TestValues.Name,
       TestValues.Description,
@@ -93,7 +93,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateUsagePlanKeyAsyn
  * Test the DeleteApiKeyAsync method
  */
 describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteApiKeyAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = apiGatewayHelperMock.DeleteApiKeyAsync(TestValues.Key);
     return expect(actual).rejects.toThrow(TestValues.AWSError);
   });
@@ -103,7 +103,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteApiKeyAsync.name
  * Test the DeleteUsagePlanAsync method
  */
 describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteUsagePlanAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = apiGatewayHelperMock.DeleteUsagePlanAsync(
       TestValues.UsagePlanId,
     );
@@ -115,7 +115,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteUsagePlanAsync.n
  * Test the DeleteUsagePlanKeyAsync method
  */
 describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteUsagePlanKeyAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = apiGatewayHelperMock.DeleteUsagePlanKeyAsync(
       TestValues.Key,
       TestValues.UsagePlanId,
@@ -128,7 +128,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteUsagePlanKeyAsyn
  * Test the GetApiKeyAsync method
  */
 describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.GetApiKeyAsync.name}`, () => {
-  test(TestValues.InvalidTest, () => {
+  test(`${TestValues.InvalidTest}`, () => {
     const actual = apiGatewayHelperMock.GetApiKeyAsync(TestValues.Key);
     return expect(actual).rejects.toThrow(TestValues.AWSError);
   });

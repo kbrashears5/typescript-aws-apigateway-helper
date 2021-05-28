@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as APIGateway from '@aws-sdk/client-api-gateway';
 
 /**
@@ -48,20 +49,20 @@ export interface IAPIGatewayHelper {
    * Delete an API key
    * @param apiKey {string} API key to delete
    */
-  DeleteApiKeyAsync(apiKey: string): Promise<object>;
+  DeleteApiKeyAsync(apiKey: string): Promise<any>;
 
   /**
    * Delete an usage plan
    * @param usagePlanId {string} Usage plan to delete
    */
-  DeleteUsagePlanAsync(usagePlanId: string): Promise<object>;
+  DeleteUsagePlanAsync(usagePlanId: string): Promise<any>;
 
   /**
    * Delete an usage plan key
    * @param keyId {string} Key to delete
    * @param usagePlanId {string} Usage plan that is associated with this key
    */
-  DeleteUsagePlanKeyAsync(keyId: string, usagePlanId: string): Promise<object>;
+  DeleteUsagePlanKeyAsync(keyId: string, usagePlanId: string): Promise<any>;
 
   /**
    * Get an API key

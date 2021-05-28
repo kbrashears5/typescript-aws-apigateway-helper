@@ -4,9 +4,9 @@ import { APIGatewayHelper } from './helper';
 import * as APIGateway from '@aws-sdk/client-api-gateway';
 
 const apiKeyResponse: APIGateway.ApiKey = {};
-const deleteApiKeyResponse: object = {};
-const deleteUsagePlanResponse: object = {};
-const deleteUsagePlanKeyResponse: object = {};
+const deleteApiKeyResponse: any = {};
+const deleteUsagePlanResponse: any = {};
+const deleteUsagePlanKeyResponse: any = {};
 const usagePlanResponse: APIGateway.UsagePlan = {};
 const usagePlanKeyResponse: APIGateway.UsagePlanKey = {};
 
@@ -20,13 +20,13 @@ const createUsagePlanKey = jest.fn().mockImplementation(() => {
   return Promise.resolve<APIGateway.UsagePlanKey>(usagePlanKeyResponse);
 });
 const deleteApiKey = jest.fn().mockImplementation(() => {
-  return Promise.resolve<{}>(deleteApiKeyResponse);
+  return Promise.resolve<any>(deleteApiKeyResponse);
 });
 const deleteUsagePlan = jest.fn().mockImplementation(() => {
-  return Promise.resolve<{}>(deleteUsagePlanResponse);
+  return Promise.resolve<any>(deleteUsagePlanResponse);
 });
 const deleteUsagePlanKey = jest.fn().mockImplementation(() => {
-  return Promise.resolve<{}>(deleteUsagePlanKeyResponse);
+  return Promise.resolve<any>(deleteUsagePlanKeyResponse);
 });
 const getApiKey = jest.fn().mockImplementation(() => {
   return Promise.resolve<APIGateway.ApiKey>(apiKeyResponse);
@@ -78,7 +78,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateApiKeyAsync.name
       `[${action}]-${TestValues.MustSupply} description`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = apiGatewayHelperMock.CreateApiKeyAsync(
       TestValues.Name,
       TestValues.Description,
@@ -125,7 +125,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateUsagePlanAsync.n
       `[${action}]-${TestValues.MustSupply} at least one apiStage`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = apiGatewayHelperMock.CreateUsagePlanAsync(
       TestValues.Name,
       TestValues.Description,
@@ -172,7 +172,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.CreateUsagePlanKeyAsyn
       `[${action}]-${TestValues.MustSupply} usagePlanId`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = apiGatewayHelperMock.CreateUsagePlanKeyAsync(
       TestValues.Name,
       TestValues.Description,
@@ -197,7 +197,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteApiKeyAsync.name
       `[${action}]-${TestValues.MustSupply} apiKey`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = apiGatewayHelperMock.DeleteApiKeyAsync(TestValues.Key);
     return expect(actual).resolves.toEqual(deleteApiKeyResponse);
   });
@@ -218,7 +218,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteUsagePlanAsync.n
       `[${action}]-${TestValues.MustSupply} usagePlanId`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = apiGatewayHelperMock.DeleteUsagePlanAsync(
       TestValues.UsagePlanId,
     );
@@ -251,7 +251,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.DeleteUsagePlanKeyAsyn
       `[${action}]-${TestValues.MustSupply} usagePlanId`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = apiGatewayHelperMock.DeleteUsagePlanKeyAsync(
       TestValues.Key,
       TestValues.UsagePlanId,
@@ -273,7 +273,7 @@ describe(`${APIGatewayHelper.name}.${apiGatewayHelperMock.GetApiKeyAsync.name}`,
       `[${action}]-${TestValues.MustSupply} apiKey`,
     );
   });
-  test(TestValues.ValidTest, () => {
+  test(`${TestValues.ValidTest}`, () => {
     const actual = apiGatewayHelperMock.GetApiKeyAsync(TestValues.Key);
     return expect(actual).resolves.toEqual(apiKeyResponse);
   });

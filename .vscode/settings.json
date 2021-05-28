@@ -3,7 +3,9 @@
     "IAPI",
     "Parens",
     "cobertura",
+    "eqeqeq",
     "ilogger",
+    "martinbeentjes",
     "postpublish",
     "prebuild"
   ]
