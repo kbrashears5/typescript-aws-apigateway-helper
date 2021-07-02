@@ -4,6 +4,7 @@
     "IAPI",
     "Parens",
     "cobertura",
+    "codecov",
     "codeql",
     "eqeqeq",
     "ilogger",

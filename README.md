@@ -5,7 +5,7 @@
 <b>Typescript helper functions for AWS API Gateway</b>
     
 [![CI/CD](https://github.com/kbrashears5/typescript-aws-apigateway-helper/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/kbrashears5/typescript-aws-apigateway-helper/actions/workflows/ci-cd.yml)
-
+[![codecov](https://codecov.io/gh/kbrashears5/typescript-aws-apigateway-helper/branch/master/graph/badge.svg?token=N94B7YD0N4)](https://codecov.io/gh/kbrashears5/typescript-aws-apigateway-helper)
 [![NPM Version](https://img.shields.io/npm/v/typescript-aws-apigateway-helper)](https://img.shields.io/npm/v/typescript-aws-apigateway-helper)
 [![Downloads](https://img.shields.io/npm/dt/typescript-aws-apigateway-helper)](https://img.shields.io/npm/dt/typescript-aws-apigateway-helper)
 
